@@ -48,21 +48,21 @@ public class PredictionApp {
 
 				}
 				BuildDatas data = new BuildDatas(Integer.parseInt(myArrayList.get(0)), converStatusToINt,
-						Double.parseDouble(myArrayList.get(0)), Double.parseDouble(myArrayList.get(0)),
-						Double.parseDouble(myArrayList.get(0)), Double.parseDouble(myArrayList.get(0)),
-						Double.parseDouble(myArrayList.get(0)), Double.parseDouble(myArrayList.get(0)),
-						Double.parseDouble(myArrayList.get(0)), Double.parseDouble(myArrayList.get(0)),
-						Double.parseDouble(myArrayList.get(0)), Double.parseDouble(myArrayList.get(0)),
-						Double.parseDouble(myArrayList.get(0)), Double.parseDouble(myArrayList.get(0)),
-						Double.parseDouble(myArrayList.get(0)), Double.parseDouble(myArrayList.get(0)),
-						Double.parseDouble(myArrayList.get(0)), Double.parseDouble(myArrayList.get(0)),
-						Double.parseDouble(myArrayList.get(0)), Double.parseDouble(myArrayList.get(0)),
-						Double.parseDouble(myArrayList.get(0)), Double.parseDouble(myArrayList.get(0)),
-						Double.parseDouble(myArrayList.get(0)), Double.parseDouble(myArrayList.get(0)),
-						Double.parseDouble(myArrayList.get(0)), Double.parseDouble(myArrayList.get(0)),
-						Double.parseDouble(myArrayList.get(0)), Double.parseDouble(myArrayList.get(0)),
-						Double.parseDouble(myArrayList.get(0)), Double.parseDouble(myArrayList.get(0)),
-						Double.parseDouble(myArrayList.get(0)), Double.parseDouble(myArrayList.get(0))
+						Double.parseDouble(myArrayList.get(2)), Double.parseDouble(myArrayList.get(3)),
+						Double.parseDouble(myArrayList.get(4)), Double.parseDouble(myArrayList.get(5)),
+						Double.parseDouble(myArrayList.get(6)), Double.parseDouble(myArrayList.get(7)),
+						Double.parseDouble(myArrayList.get(8)), Double.parseDouble(myArrayList.get(9)),
+						Double.parseDouble(myArrayList.get(10)), Double.parseDouble(myArrayList.get(11)),
+						Double.parseDouble(myArrayList.get(12)), Double.parseDouble(myArrayList.get(13)),
+						Double.parseDouble(myArrayList.get(14)), Double.parseDouble(myArrayList.get(15)),
+						Double.parseDouble(myArrayList.get(16)), Double.parseDouble(myArrayList.get(17)),
+						Double.parseDouble(myArrayList.get(18)), Double.parseDouble(myArrayList.get(19)),
+						Double.parseDouble(myArrayList.get(20)), Double.parseDouble(myArrayList.get(21)),
+						Double.parseDouble(myArrayList.get(22)), Double.parseDouble(myArrayList.get(23)),
+						Double.parseDouble(myArrayList.get(24)), Double.parseDouble(myArrayList.get(25)),
+						Double.parseDouble(myArrayList.get(26)), Double.parseDouble(myArrayList.get(27)),
+						Double.parseDouble(myArrayList.get(28)), Double.parseDouble(myArrayList.get(29)),
+						Double.parseDouble(myArrayList.get(30)), Double.parseDouble(myArrayList.get(31))
 
 				);
 				
@@ -92,8 +92,7 @@ public class PredictionApp {
 				+ "370 Software Engineering/Assignments/SoftwareProject/Data Source/wdbc.txt"; // Update
 																																										// with
 																																										// your
-																																										// file
-																																										// path
+																								// file // path
 
 		try {
 			readFromFile(filePath, trainningDatas);
@@ -101,11 +100,15 @@ public class PredictionApp {
 			e.printStackTrace();
 		}
 
-//
-		System.out.println(trainningDatas[0].getdiagnosis());
+// 6
+		System.out.println("aream_mean Before handle: " + trainningDatas[0].getarea_mean());
 
-		System.out.println("Ok workink");
+//		missingValHandler handlerTheCalss = new missingValHandler(trainningDatas);
+		missingValHandler.handleThisdata(trainningDatas);
+		System.out.println("After handle: " + trainningDatas[0].getarea_mean());
 
+		// 2) Building the desicion tree with the trainning data
+		DecisionTree.callDecisionTree(trainningDatas);
 
 	}
 
