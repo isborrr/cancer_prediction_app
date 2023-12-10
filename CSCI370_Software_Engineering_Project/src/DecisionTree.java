@@ -1,491 +1,260 @@
+import java.util.ArrayList;
+import java.util.Arrays;
+import java.util.HashMap;
+import java.util.List;
+import java.util.Map;
 
-public class missingValHandler {
-	
-	public static void handleThisdata(BuildDatas[] dataToBeHadle) {
+public class DecisionTree {
 
-//	}   
-//		System.out.println("The length is: " + dataToBeHadle[0].getradius_mean());
+	public static void callDecisionTree(BuildDatas[] data1) {
+		// Example usage
+		double[][] data = {
+				{ 842302, 1, 17.99, 10.38, 122.8, 1001, 0.1184, 0.2776, 0.3001, 0.1471, 0.2419, 0.07871, 1.095, 0.9053,
+						8.589, 153.4, 0.006399, 0.04904, 0.05373, 0.01587, 0.03003, 0.006193, 25.38, 17.33, 184.6, 2019,
+						0.1622, 0.6656, 0.7119, 0.2654, 0.4601, 0.1189 },
+				{ 842517, 1, 20.57, 17.77, 132.9, 1326, 0.08474, 0.07864, 0.0869, 0.07017, 0.1812, 0.05667, 0.5435,
+						0.7339, 3.398, 74.08, 0.005225, 0.01308, 0.0186, 0.0134, 0.01389, 0.003532, 24.99, 23.41, 158.8,
+						1956, 0.1238, 0.1866, 0.2416, 0.186, 0.275, 0.08902 },
+				// Add more data as needed
+		};
 
-//	public  missingValHandler(BuildDatas [] dataToBeHadle) {
-		// TODO Auto-generated constructor stub
-		int maxMissingValue =0;
-		for (int i = 0; i < dataToBeHadle.length - 3; i++) {
-			if ((dataToBeHadle[i].getradius_mean() == -1)) {
-				maxMissingValue++;
-			}
-			if ((dataToBeHadle[i].gettexture_mean() == -1)) {
-				maxMissingValue++;
-				}
-			if((dataToBeHadle[i].getperimeter_mean() == -1)) {
-				maxMissingValue++;
-			}
-			if ((dataToBeHadle[i].getarea_mean() == -1)) {
-				maxMissingValue++;
-			}
-			if ((dataToBeHadle[i].getsmoothness_mean() == -1)) {
-				maxMissingValue++;
-			}
+		String[] features = { "id", "status", "radius_mean", "texture_mean", "perimeter_mean", "area_mean",
+				"smoothness_mean", "compactness_mean", "concavity_mean", "concave_points_mean", "symmetry_mean",
+				"fractal_dimension_mean", "radius_standard_error", "texture_standard_error", "perimeter_standard_error",
+				"area_standard_error", "smoothness_standard_error", "compactness_standard_error",
+				"concavity_standard_error", "concave_points_standard_error", "symmetry_standard_error",
+				"fractal_dimension_standard_error", "radius_worst", "texture_worst", "perimeter_worst", "area_worst",
+				"smoothness_worst", "compactness_worst", "concavity_worst", "concave_points_worst", "symmetry_worst",
+				"fractal_dimension_worst" };
 
-			if ((dataToBeHadle[i].getcompactness_mean() == -1)) {
-				maxMissingValue++;
-			}
+		int targetIndex = 1; // Index of the status feature (target variable)
 
-			if ((dataToBeHadle[i].getconcavity_mean() == -1)) {
-				maxMissingValue++;
-			}
-				
-			if ((dataToBeHadle[i].getconcave_points_mean() == -1)) {
-				maxMissingValue++;
-			}
-			if ((dataToBeHadle[i].getsymmetry_mean() == -1)) {
-				maxMissingValue++;
-			}
-				
+		DecisionTreeNode root = buildDecisionTree(data, features, targetIndex);
+		System.out.println("Decision Tree built successfully!");
 
-			if ((dataToBeHadle[i].getfractal_dimension_mean() == -1)) {
-				maxMissingValue++;
-			}
-				
-			if ((dataToBeHadle[i].getradius_standard_error() == -1)) {
-				maxMissingValue++;
-			}
-				
+		// Example instance for prediction
+		double[] instance = { 12345, 1, 15.0, 20.0, 110.0, 1000.0, 0.1, 0.2, 0.3, 0.15, 0.25, 0.07, 1.2, 1.0, 10.0,
+				150.0, 0.005, 0.05, 0.06, 0.01, 0.02, 0.004, 22.0, 18.0, 120.0, 1300.0, 0.15, 0.6, 0.7, 0.2, 0.5, 0.1 };
 
-			if ((dataToBeHadle[i].gettexture_standard_error() == -1)) {
-				maxMissingValue++;
-			}
-				
+		double prediction = predict(root, instance);
+		System.out.println("Prediction for the instance: " + prediction);
 
-			if ((dataToBeHadle[i].getperimeter_standard_error() == -1)) {
-				maxMissingValue++;
-			}
-				
-
-			if ((dataToBeHadle[i].getarea_standard_error() == -1)) {
-				maxMissingValue++;
-			}
-				
-
-			if ((dataToBeHadle[i].getsmoothness_standard_error() == -1)) {
-				maxMissingValue++;
-			}
-				
-
-			if ((dataToBeHadle[i].getcompactness_standard_error() == -1)) {
-				maxMissingValue++;
-			}
-				
-
-			if ((dataToBeHadle[i].getconcavity_standard_error() == -1)) {
-				maxMissingValue++;
-			}
-				
-
-			if ((dataToBeHadle[i].getconcave_points_standard_error() == -1)) {
-				maxMissingValue++;
-			}
-				
-
-			if ((dataToBeHadle[i].getsymmetry_standard_error() == -1)) {
-				maxMissingValue++;
-			}
-					
-
-			if ((dataToBeHadle[i].getfractal_dimension_standard_error() == -1)) {
-				maxMissingValue++;
-			}
-				
-
-			if ((dataToBeHadle[i].getradius_worst() == -1)) {
-				maxMissingValue++;
-			}
-				
-			if ((dataToBeHadle[i].gettexture_worst() == -1)) {
-				maxMissingValue++;
-			}
-				
-
-			if ((dataToBeHadle[i].getperimeter_worst() == -1)) {
-				maxMissingValue++;
-			}
-				
-
-			if ((dataToBeHadle[i].getarea_worst() == -1)) {
-				maxMissingValue++;
-			}
-				
-
-			if ((dataToBeHadle[i].getsmoothness_worst() == -1)) {
-				maxMissingValue++;
-			}
-				
-
-			if ((dataToBeHadle[i].getcompactness_worst() == -1)) {
-				maxMissingValue++;
-			}
-			
-
-			if ((dataToBeHadle[i].getconcavity_worst() == -1)) {
-				maxMissingValue++;
-			}
-				
-					
-
-			if ((dataToBeHadle[i].getconcave_points_worst() == -1)) {
-				maxMissingValue++;
-			}
-					
-			if ((dataToBeHadle[i].getsymmetry_worst() == -1)) {
-				maxMissingValue++;
-					}
-
-			if ((dataToBeHadle[i].getfractal_dimension_worst() == -1)) {
-				maxMissingValue++;
-					}
-					
-					}	
-
-					if (maxMissingValue > 8) {
-						System.out.println(
-								"Sorry You have reached the allowed number of Missing values: Please correct your Data and try again:");
-						System.exit(0);
-
-					} else {
-						for (int i = 0; i < dataToBeHadle.length - 3; i++) {
-							if ((dataToBeHadle[i].getradius_mean() == -1)) {
-								double average = 0;
-								int numbAvg = 0;
-								for (int j = 0; j < dataToBeHadle.length - 3; j++) {
-									average += dataToBeHadle[j].getradius_mean();
-									numbAvg++;
-								}
-								average = average / numbAvg;
-								dataToBeHadle[i].setradius_mean(average);
-
-
-							}
-							if ((dataToBeHadle[i].gettexture_mean() == -1)) {
-								double average = 0;
-								int numbAvg = 0;
-								for (int j = 0; j < dataToBeHadle.length - 3; j++) {
-									average += dataToBeHadle[j].gettexture_mean();
-									numbAvg++;
-								}
-								average = average / numbAvg;
-								dataToBeHadle[i].settexture_mean(average);
-							}
-							if ((dataToBeHadle[i].getperimeter_mean() == -1)) {
-								double average = 0;
-								int numbAvg = 0;
-								for (int j = 0; j < dataToBeHadle.length - 3; j++) {
-									average += dataToBeHadle[j].getperimeter_mean();
-									numbAvg++;
-								}
-								average = average / numbAvg;
-								dataToBeHadle[i].setperimeter_mean(average);
-							}
-							if ((dataToBeHadle[i].getarea_mean() == -1)) {
-								double average = 0;
-								int numbAvg = 0;
-								for (int j = 0; j < dataToBeHadle.length - 3; j++) {
-									average += dataToBeHadle[j].getarea_mean();
-									numbAvg++;
-								}
-								average = average / numbAvg;
-								dataToBeHadle[i].setarea_mean(average);
-							}
-							if ((dataToBeHadle[i].getsmoothness_mean() == -1)) {
-								double average = 0;
-								int numbAvg = 0;
-								for (int j = 0; j < dataToBeHadle.length - 3; j++) {
-									average += dataToBeHadle[j].getsmoothness_mean();
-									numbAvg++;
-								}
-								average = average / numbAvg;
-								dataToBeHadle[i].setsmoothness_mean(average);
-							}
-
-							if ((dataToBeHadle[i].getcompactness_mean() == -1)) {
-								double average = 0;
-								int numbAvg = 0;
-								for (int j = 0; j < dataToBeHadle.length - 3; j++) {
-									average += dataToBeHadle[j].getcompactness_mean();
-									numbAvg++;
-								}
-								average = average / numbAvg;
-								dataToBeHadle[i].setcompactness_mean(average);
-							}
-
-							if ((dataToBeHadle[i].getconcavity_mean() == -1)) {
-								double average = 0;
-								int numbAvg = 0;
-								for (int j = 0; j < dataToBeHadle.length - 3; j++) {
-									average += dataToBeHadle[j].getconcavity_mean();
-									numbAvg++;
-								}
-								average = average / numbAvg;
-								dataToBeHadle[i].setconcavity_mean(average);
-							}
-
-							if ((dataToBeHadle[i].getconcave_points_mean() == -1)) {
-								double average = 0;
-								int numbAvg = 0;
-								for (int j = 0; j < dataToBeHadle.length - 3; j++) {
-									average += dataToBeHadle[j].getconcave_points_mean();
-									numbAvg++;
-								}
-								average = average / numbAvg;
-								dataToBeHadle[i].setconcave_points_mean(average);
-							}
-							if ((dataToBeHadle[i].getsymmetry_mean() == -1)) {
-								double average = 0;
-								int numbAvg = 0;
-								for (int j = 0; j < dataToBeHadle.length - 3; j++) {
-									average += dataToBeHadle[j].getsymmetry_mean();
-									numbAvg++;
-								}
-								average = average / numbAvg;
-								dataToBeHadle[i].setsymmetry_mean(average);
-							}
-
-							if ((dataToBeHadle[i].getfractal_dimension_mean() == -1)) {
-								double average = 0;
-								int numbAvg = 0;
-								for (int j = 0; j < dataToBeHadle.length - 3; j++) {
-									average += dataToBeHadle[j].getfractal_dimension_mean();
-									numbAvg++;
-								}
-								average = average / numbAvg;
-								dataToBeHadle[i].setfractal_dimension_mean(average);
-							}
-
-							if ((dataToBeHadle[i].getradius_standard_error() == -1)) {
-								double average = 0;
-								int numbAvg = 0;
-								for (int j = 0; j < dataToBeHadle.length - 3; j++) {
-									average += dataToBeHadle[j].getradius_standard_error();
-									numbAvg++;
-								}
-								average = average / numbAvg;
-								dataToBeHadle[i].setradius_standard_error(average);
-							}
-
-							if ((dataToBeHadle[i].gettexture_standard_error() == -1)) {
-								double average = 0;
-								int numbAvg = 0;
-								for (int j = 0; j < dataToBeHadle.length - 3; j++) {
-									average += dataToBeHadle[j].gettexture_standard_error();
-									numbAvg++;
-								}
-								average = average / numbAvg;
-								dataToBeHadle[i].settexture_standard_error(average);
-							}
-
-							if ((dataToBeHadle[i].getperimeter_standard_error() == -1)) {
-								double average = 0;
-								int numbAvg = 0;
-								for (int j = 0; j < dataToBeHadle.length - 3; j++) {
-									average += dataToBeHadle[j].getperimeter_standard_error();
-									numbAvg++;
-								}
-								average = average / numbAvg;
-								dataToBeHadle[i].setperimeter_standard_error(average);
-							}
-
-							if ((dataToBeHadle[i].getarea_standard_error() == -1)) {
-								double average = 0;
-								int numbAvg = 0;
-								for (int j = 0; j < dataToBeHadle.length - 3; j++) {
-									average += dataToBeHadle[j].getarea_standard_error();
-									numbAvg++;
-								}
-								average = average / numbAvg;
-								dataToBeHadle[i].setarea_standard_error(average);
-							}
-
-							if ((dataToBeHadle[i].getsmoothness_standard_error() == -1)) {
-								double average = 0;
-								int numbAvg = 0;
-								for (int j = 0; j < dataToBeHadle.length - 3; j++) {
-									average += dataToBeHadle[j].getsmoothness_standard_error();
-									numbAvg++;
-								}
-								average = average / numbAvg;
-								dataToBeHadle[i].setsmoothness_standard_error(average);
-							}
-
-							if ((dataToBeHadle[i].getcompactness_standard_error() == -1)) {
-								double average = 0;
-								int numbAvg = 0;
-								for (int j = 0; j < dataToBeHadle.length - 3; j++) {
-									average += dataToBeHadle[j].getsmoothness_standard_error();
-									numbAvg++;
-								}
-								average = average / numbAvg;
-								dataToBeHadle[i].setcompactness_standard_error(average);
-							}
-
-							if ((dataToBeHadle[i].getconcavity_standard_error() == -1)) {
-								double average = 0;
-								int numbAvg = 0;
-								for (int j = 0; j < dataToBeHadle.length - 3; j++) {
-									average += dataToBeHadle[j].getconcavity_standard_error();
-									numbAvg++;
-								}
-								average = average / numbAvg;
-								dataToBeHadle[i].setconcavity_standard_error(average);
-							}
-
-							if ((dataToBeHadle[i].getconcave_points_standard_error() == -1)) {
-								double average = 0;
-								int numbAvg = 0;
-								for (int j = 0; j < dataToBeHadle.length - 3; j++) {
-									average += dataToBeHadle[j].getconcave_points_standard_error();
-									numbAvg++;
-								}
-								average = average / numbAvg;
-								dataToBeHadle[i].setconcave_points_standard_error(average);
-							}
-
-							if ((dataToBeHadle[i].getsymmetry_standard_error() == -1)) {
-								double average = 0;
-								int numbAvg = 0;
-								for (int j = 0; j < dataToBeHadle.length - 3; j++) {
-									average += dataToBeHadle[j].getsymmetry_standard_error();
-									numbAvg++;
-								}
-								average = average / numbAvg;
-								dataToBeHadle[i].setsymmetry_standard_error(average);
-							}
-
-							if ((dataToBeHadle[i].getfractal_dimension_standard_error() == -1)) {
-								double average = 0;
-								int numbAvg = 0;
-								for (int j = 0; j < dataToBeHadle.length - 3; j++) {
-									average += dataToBeHadle[j].getfractal_dimension_standard_error();
-									numbAvg++;
-								}
-								average = average / numbAvg;
-								dataToBeHadle[i].setfractal_dimension_standard_error(average);
-							}
-
-							if ((dataToBeHadle[i].getradius_worst() == -1)) {
-								double average = 0;
-								int numbAvg = 0;
-								for (int j = 0; j < dataToBeHadle.length - 3; j++) {
-									average += dataToBeHadle[j].getradius_worst();
-									numbAvg++;
-								}
-								average = average / numbAvg;
-								dataToBeHadle[i].setradius_worst(average);
-							}
-
-							if ((dataToBeHadle[i].gettexture_worst() == -1)) {
-								double average = 0;
-								int numbAvg = 0;
-								for (int j = 0; j < dataToBeHadle.length - 3; j++) {
-									average += dataToBeHadle[j].gettexture_worst();
-									numbAvg++;
-								}
-								average = average / numbAvg;
-								dataToBeHadle[i].settexture_worst(average);
-							}
-
-							if ((dataToBeHadle[i].getperimeter_worst() == -1)) {
-								double average = 0;
-								int numbAvg = 0;
-								for (int j = 0; j < dataToBeHadle.length - 3; j++) {
-									average += dataToBeHadle[j].getperimeter_worst();
-									numbAvg++;
-								}
-								average = average / numbAvg;
-								dataToBeHadle[i].setperimeter_worst(average);
-							}
-
-							if ((dataToBeHadle[i].getarea_worst() == -1)) {
-								double average = 0;
-								int numbAvg = 0;
-								for (int j = 0; j < dataToBeHadle.length - 3; j++) {
-									average += dataToBeHadle[j].getarea_worst();
-									numbAvg++;
-								}
-								average = average / numbAvg;
-								dataToBeHadle[i].setarea_worst(average);
-							}
-
-							if ((dataToBeHadle[i].getsmoothness_worst() == -1)) {
-								double average = 0;
-								int numbAvg = 0;
-								for (int j = 0; j < dataToBeHadle.length - 3; j++) {
-									average += dataToBeHadle[j].getsmoothness_worst();
-									numbAvg++;
-								}
-								average = average / numbAvg;
-								dataToBeHadle[i].setsmoothness_worst(average);
-							}
-
-							if ((dataToBeHadle[i].getcompactness_worst() == -1)) {
-								double average = 0;
-								int numbAvg = 0;
-								for (int j = 0; j < dataToBeHadle.length - 3; j++) {
-									average += dataToBeHadle[j].getcompactness_worst();
-									numbAvg++;
-								}
-								average = average / numbAvg;
-								dataToBeHadle[i].setcompactness_worst(average);
-							}
-						
-							if ((dataToBeHadle[i].getconcavity_worst() == -1)) {
-								double average = 0;
-								int numbAvg = 0;
-								for (int j = 0; j < dataToBeHadle.length - 3; j++) {
-									average += dataToBeHadle[j].getconcavity_worst();
-									numbAvg++;
-								}
-								average = average / numbAvg;
-								dataToBeHadle[i].setconcavity_worst(average);
-							}
-
-							if ((dataToBeHadle[i].getconcave_points_worst() == -1)) {
-								double average = 0;
-								int numbAvg = 0;
-								for (int j = 0; j < dataToBeHadle.length - 3; j++) {
-									average += dataToBeHadle[j].getconcave_points_worst();
-									numbAvg++;
-								}
-								average = average / numbAvg;
-								dataToBeHadle[i].setconcave_points_worst(average);
-							}
-
-							if ((dataToBeHadle[i].getsymmetry_worst() == -1)) {
-								double average = 0;
-								int numbAvg = 0;
-								for (int j = 0; j < dataToBeHadle.length - 3; j++) {
-									average += dataToBeHadle[j].getsymmetry_worst();
-									numbAvg++;
-								}
-								average = average / numbAvg;
-								dataToBeHadle[i].setsymmetry_worst(average);
-							}
-
-							if ((dataToBeHadle[i].getfractal_dimension_worst() == -1)) {
-								double average = 0;
-								int numbAvg = 0;
-								for (int j = 0; j < dataToBeHadle.length - 3; j++) {
-									average += dataToBeHadle[j].getfractal_dimension_worst();
-									numbAvg++;
-								}
-								average = average / numbAvg;
-								dataToBeHadle[i].setfractal_dimension_worst(average);
-
-							}
-
-						}
-					}
-					
-		}
-		
 	}
 
 
+
+	private static DecisionTreeNode buildDecisionTree(double[][] data, String[] features, int targetIndex) {
+		if (data.length == 0) {
+			return null;
+		}
+
+		double[] classLabels = getColumn(data, targetIndex);
+
+		// If all instances have the same class label, create a leaf node
+		if (isHomogeneous(classLabels)) {
+			return new DecisionTreeNode(classLabels[0]);
+		}
+
+		// If no features are left, create a leaf node with the majority class label
+		if (features.length == 0) {
+			double majorityClass = getMajorityClass(classLabels);
+			return new DecisionTreeNode(majorityClass);
+		}
+
+		// Find the best feature for splitting
+		String bestFeature = findBestFeature(data, features, classLabels);
+		int bestFeatureIndex = Arrays.asList(features).indexOf(bestFeature);
+
+		// Create a non-leaf node with the best feature as the decision attribute
+		DecisionTreeNode node = new DecisionTreeNode(bestFeatureIndex, bestFeature);
+
+		// Remove the best feature from the list of available features
+		String[] remainingFeatures = Arrays.copyOfRange(features, 0, bestFeatureIndex);
+		String[] newFeatures = Arrays.copyOfRange(features, bestFeatureIndex + 1, features.length);
+		System.arraycopy(newFeatures, 0, remainingFeatures, bestFeatureIndex, newFeatures.length);
+
+		// Split the data based on the best feature
+		Map<Double, List<double[]>> subsets = splitData(data, bestFeatureIndex);
+
+		// Recursively build the decision tree for each subset
+		for (Map.Entry<Double, List<double[]>> entry : subsets.entrySet()) {
+			double featureValue = entry.getKey();
+			List<double[]> subset = entry.getValue();
+
+			DecisionTreeNode childNode = buildDecisionTree(subset.toArray(new double[0][0]), remainingFeatures,
+					targetIndex);
+			node.addChild(featureValue, childNode);
+		}
+
+		return node;
+	}
+
+	static double predict(DecisionTreeNode node, double[] instance) {
+		if (node.isLeaf()) {
+			return node.getLabel();
+		}
+
+		double featureValue = instance[(int) node.getDecisionAttribute()];
+		DecisionTreeNode childNode = node.getChild(featureValue);
+
+		if (childNode == null) {
+			// If there is no child node for the observed feature value, return the majority
+			// class label
+			return getMajorityClass(getColumn(node.getData(), node.getTargetIndex()));
+		}
+
+		// Recursively predict for the child node
+		return predict(childNode, instance);
+	}
+
+	private static String findBestFeature(double[][] data, String[] features, double[] classLabels) {
+		double bestInfoGain = Double.MIN_VALUE;
+		String bestFeature = null;
+
+		for (String feature : features) {
+			double infoGain = calculateInfoGain(data, feature, classLabels);
+			if (infoGain > bestInfoGain) {
+				bestInfoGain = infoGain;
+				bestFeature = feature;
+			}
+		}
+
+		return bestFeature;
+	}
+
+	private static double calculateInfoGain(double[][] data, String feature, double[] classLabels) {
+		double entropyBeforeSplit = calculateEntropy(classLabels);
+
+		int featureIndex = Arrays.asList(feature).indexOf(feature);
+		double[] featureValues = getColumn(data, featureIndex);
+
+		Map<Double, List<double[]>> subsets = splitData(data, (int) featureValues[0]);
+
+		double entropyAfterSplit = 0.0;
+		for (List<double[]> subset : subsets.values()) {
+			double[] subsetClassLabels = getColumn(subset.toArray(new double[0][0]), subset.get(0).length - 1);
+			double weight = (double) subset.size() / data.length;
+			entropyAfterSplit += weight * calculateEntropy(subsetClassLabels);
+		}
+
+		return entropyBeforeSplit - entropyAfterSplit;
+	}
+
+	private static double calculateEntropy(double[] classLabels) {
+		int totalInstances = classLabels.length;
+		Map<Double, Integer> classCounts = new HashMap<>();
+
+		for (double label : classLabels) {
+			classCounts.put(label, classCounts.getOrDefault(label, 0) + 1);
+		}
+
+		double entropy = 0.0;
+		for (int count : classCounts.values()) {
+			double probability = (double) count / totalInstances;
+			entropy -= probability * log2(probability);
+		}
+
+		return entropy;
+	}
+
+	private static double log2(double x) {
+		return Math.log(x) / Math.log(2);
+	}
+
+	private static boolean isHomogeneous(double[] array) {
+		for (int i = 1; i < array.length; i++) {
+			if (array[i] != array[0]) {
+				return false;
+			}
+		}
+		return true;
+	}
+
+	private static double getMajorityClass(double[] classLabels) {
+		Map<Double, Integer> classCounts = new HashMap<>();
+		for (double label : classLabels) {
+			classCounts.put(label, classCounts.getOrDefault(label, 0) + 1);
+		}
+
+		double majorityClass = 0;
+		int maxCount = 0;
+
+		for (Map.Entry<Double, Integer> entry : classCounts.entrySet()) {
+			if (entry.getValue() > maxCount) {
+				majorityClass = entry.getKey();
+				maxCount = entry.getValue();
+			}
+		}
+
+		return majorityClass;
+	}
+
+	private static double[] getColumn(double[][] data, int columnIndex) {
+		return Arrays.stream(data).mapToDouble(row -> row[columnIndex]).toArray();
+	}
+
+	private static Map<Double, List<double[]>> splitData(double[][] data, int featureIndex) {
+		Map<Double, List<double[]>> subsets = new HashMap<>();
+
+		for (int i = 0; i < data.length; i++) {
+			double featureValue = data[i][featureIndex];
+			double[] instance = data[i];
+
+			subsets.computeIfAbsent(featureValue, key -> new ArrayList<>()).add(instance);
+		}
+
+		return subsets;
+	}
+
+	private static class DecisionTreeNode {
+		private double label; // Class label for leaf nodes
+		private int targetIndex; // Index of the target variable in the data
+		private int decisionAttribute; // Index of the decision attribute (feature) for non-leaf nodes
+		private String decisionAttributeName; // Name of the decision attribute
+		private Map<Double, DecisionTreeNode> children; // Children nodes
+
+		public DecisionTreeNode(double label) {
+			this.label = label;
+		}
+
+		public DecisionTreeNode(int decisionAttribute, String decisionAttributeName) {
+			this.decisionAttribute = decisionAttribute;
+			this.decisionAttributeName = decisionAttributeName;
+			this.children = new HashMap<>();
+		}
+
+		public void addChild(double featureValue, DecisionTreeNode childNode) {
+			children.put(featureValue, childNode);
+		}
+
+		public DecisionTreeNode getChild(double featureValue) {
+			return children.get(featureValue);
+		}
+
+		public boolean isLeaf() {
+			return children == null || children.isEmpty();
+		}
+
+		public double getLabel() {
+			return label;
+		}
+
+		public int getDecisionAttribute() {
+			return decisionAttribute;
+        }
+
+		public int getTargetIndex() {
+			return targetIndex;
+		}
+
+		public double[][] getData() {
+			return null; // Implement if needed
+        }
+    }
+
+	public DecisionTreeNode getRoot() {
+		// TODO Auto-generated method stub
+		return null;
+	}
+}
 
