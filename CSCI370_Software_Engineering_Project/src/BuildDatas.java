@@ -211,7 +211,130 @@ public class BuildDatas {
 		}
 //	}
 
+		//// Setters of the values of the features
 
+		public void setradius_mean(double new_radius_mean ) {
+			this.radius_mean = new_radius_mean;
+		}
+
+		public void settexture_mean(double new_texture_mean) {
+			this.texture_mean = new_texture_mean;
+		}
+
+		public void setperimeter_mean(double new_perimeter_mean) {
+			this.perimeter_mean = new_perimeter_mean;
+		}
+
+		public void setarea_mean(double new_area_mean) {
+			this.area_mean = new_area_mean;
+		}
+
+		public void setsmoothness_mean(double new_smoothness_mean) {
+			this.smoothness_mean = new_smoothness_mean;
+		}
+
+		public void setcompactness_mean(double new_compactness_mean) {
+			this.compactness_mean = new_compactness_mean;
+		}
+
+		public void setconcavity_mean(double new_concavity_mean) {
+			this.concavity_mean = new_concavity_mean;
+		}
+
+		public void setconcave_points_mean(double new_concave_points_mean) {
+			this.concave_points_mean = new_concave_points_mean;
+		}
+
+		public void setsymmetry_mean(double new_symmetry_mean) {
+			this.symmetry_mean = new_symmetry_mean;
+		}
+
+		public void setfractal_dimension_mean(double new_fractal_dimension_mean) {
+			this.fractal_dimension_mean = new_fractal_dimension_mean;
+		}
+
+		public void setradius_standard_error(double new_radius_standard_error) {
+			this.radius_standard_error = new_radius_standard_error;
+		}
+
+		public void settexture_standard_error(double new_texture_standard_error) {
+			this.texture_standard_error = new_texture_standard_error;
+		}
+
+		public void setperimeter_standard_error(double new_perimeter_standard_error) {
+			this.perimeter_standard_error = new_perimeter_standard_error;
+		}
+
+		public void setarea_standard_error(double new_area_standard_error) {
+			this.area_standard_error = new_area_standard_error;
+		}
+
+		public void setsmoothness_standard_error(double new_smoothness_standard_error) {
+			this.smoothness_standard_error = new_smoothness_standard_error;
+		}
+
+		public void setcompactness_standard_error(double new_compactness_standard_error) {
+			this.compactness_standard_error = new_compactness_standard_error;
+		}
+
+		public void setconcavity_standard_error(double new_concavity_standard_error) {
+			this.concavity_standard_error = new_concavity_standard_error;
+		}
+
+		public void setconcave_points_standard_error(double new_concavity_standard_error) {
+			this.concave_points_standard_error = new_concavity_standard_error;
+		}
+
+		public void setsymmetry_standard_error(double new_symmetry_standard_error) {
+			this.symmetry_standard_error = new_symmetry_standard_error;
+		}
+
+		public void setfractal_dimension_standard_error(double new_fractal_dimension_standard_error) {
+			this.fractal_dimension_standard_error = new_fractal_dimension_standard_error;
+		}
+
+		public void setradius_worst(double new_radius_worst) {
+			this.radius_worst = new_radius_worst;
+		}
+
+		public void settexture_worst(double new_texture_worst) {
+			this.texture_worst = new_texture_worst;
+		}
+
+		public void setperimeter_worst(double new_perimeter_worst) {
+			this.perimeter_worst = new_perimeter_worst;
+		}
+
+		public void setarea_worst(double new_area_worst) {
+			this.area_worst = new_area_worst;
+		}
+
+		public void setsmoothness_worst(double new_smoothness_worst) {
+			this.smoothness_worst = new_smoothness_worst;
+		}
+
+		public void setcompactness_worst(double new_compactness_worst) {
+			this.compactness_worst = new_compactness_worst;
+		}
+
+		public void setconcavity_worst(double new_concavity_worst) {
+			this.concavity_worst = new_concavity_worst;
+		}
+
+		public void setconcave_points_worst(double new_perimeter_mean) {
+			this.concave_points_worst = new_perimeter_mean;
+		}
+
+		public void setsymmetry_worst(double new_symmetry_worst) {
+			this.symmetry_worst = new_symmetry_worst;
+		}
+
+		public void setfractal_dimension_worst(double new_fractal_dimension_worst) {
+			this.fractal_dimension_worst = new_fractal_dimension_worst;
+		}
+		///
+
+		////
 
 	// 3) We are using Midpoint average as a spiting factor.
 	double[] splitPoint = new double[30];
