@@ -25,13 +25,7 @@ class DecisionTree {
 	}
 
 	private Node buildTreeRecursively(List<String[]> data, List<String> attributes) {
-		// Implementation of the decision tree algorithm here
-		// ...
-
-		// This is a simplified example, you may need to implement
-		// the logic for attribute selection, stopping criteria, etc.
-
-		// Example code to create a leaf node with a prediction:
+		
 		Node leaf = new Node("Prediction");
 		leaf.prediction = "Cancer";
 		return leaf;
@@ -42,13 +36,7 @@ class DecisionTree {
 	}
 
 	private String predictRecursively(String[] instance, Node node) {
-		// Implementation of the prediction algorithm here
-		// ...
-
-		// This is a simplified example, you may need to implement
-		// the logic for traversing the tree and making predictions.
-
-		// Example code to return a prediction:
+		
 		return node.prediction;
 	}
 }
@@ -88,14 +76,7 @@ class RandomForest {
 	}
 
 	private List<String[]> createBootstrapSample(List<String[]> data) {
-		// Implementation to create a bootstrap sample (randomly sampled with
-		// replacement)
-		// ...
-
-		// This is a simplified example; you may need to implement the logic to create
-		// a bootstrap sample from the given dataset.
-
-		// Example code:
+		
 		return data; // For simplicity, returning the original data as the bootstrap sample
 	}
 }
