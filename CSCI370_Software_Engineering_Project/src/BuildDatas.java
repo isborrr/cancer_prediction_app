@@ -332,23 +332,7 @@ public class BuildDatas {
 		public void setfractal_dimension_worst(double new_fractal_dimension_worst) {
 			this.fractal_dimension_worst = new_fractal_dimension_worst;
 		}
-		///
-
-		////
-
-	// 3) We are using Midpoint average as a spiting factor.
-	double[] splitPoint = new double[30];
-
-	public class spilter {
-
-	}
-
-	public static void main(String[] args) {
-		// TODO Auto-generated method stub
 
 
-		System.out.println("Ok workink");
-
-	}
 
 }
