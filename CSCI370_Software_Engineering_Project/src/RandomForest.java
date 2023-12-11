@@ -13,7 +13,9 @@ public class RandomForest {
 			trees.add(tree);
 		}
 	}
+//
 
+	//
 	public void train(double[][] data, String[] features, int targetIndex) {
 		Random random = new Random();
 
@@ -49,21 +51,13 @@ public class RandomForest {
 		return bootstrapSample;
 	}
 
+	public static int createBootstrapSample(String patientData) {
+
+		return 1;
+
+	}
+
 	public static void main(String[] args) {
-		// Example usage
-		double[][] data = {
-				// Add your data here
-		};
 
-		String[] features = { "feature1", "feature2", /* Add more features as needed */ };
-		int targetIndex = 2/* Index of the target variable in features */;
-
-		RandomForest randomForest = new RandomForest(5);
-		randomForest.train(data, features, targetIndex);
-
-		// Example instance for prediction
-		double[] instance = { /* Provide values for your features here */ };
-		double prediction = randomForest.predict(instance);
-		System.out.println("Random Forest Prediction for the instance: " + prediction);
 	}
 }
