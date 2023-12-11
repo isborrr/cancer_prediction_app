@@ -252,9 +252,15 @@ public class DecisionTree {
         }
     }
 
+	public void train(double[][] data, String[] features, int targetIndex) {
+		// You can copy your existing buildDecisionTree logic here
+		DecisionTreeNode root = buildDecisionTree(data, features, targetIndex);
+	}
+
 	public DecisionTreeNode getRoot() {
 		// TODO Auto-generated method stub
 		return null;
 	}
 }
+
 
