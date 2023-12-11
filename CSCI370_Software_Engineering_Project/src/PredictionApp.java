@@ -3,17 +3,8 @@ import java.io.FileReader;
 import java.io.IOException;
 import java.util.ArrayList;
 import java.util.Arrays;
-
-//Final exam => Tuesday 19th
 // For missing data = -1
 //Max missing data = 8pts
-//Change it to average of the col
-//Deadline Friday
-//Testing Reading data, One Dicision tree, Missing Data
-//System entire Testing 
-
-//Mystep 
-
 //M=> The person ha cancer 
 //B=>no cancer
 public class PredictionApp {
