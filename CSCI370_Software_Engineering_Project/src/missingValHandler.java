@@ -3,10 +3,7 @@ public class missingValHandler {
 	
 	public static void handleThisdata(BuildDatas[] dataToBeHadle) {
 
-//	}   
-//		System.out.println("The length is: " + dataToBeHadle[0].getradius_mean());
 
-//	public  missingValHandler(BuildDatas [] dataToBeHadle) {
 		// TODO Auto-generated constructor stub
 		int maxMissingValue =0;
 		for (int i = 0; i < dataToBeHadle.length - 3; i++) {
